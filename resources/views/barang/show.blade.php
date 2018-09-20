@@ -32,6 +32,7 @@
                             <p>{{ $barang->stok }}</p>
                         </div>
                     </div>
+                    @if(Auth::user()->role == 2)
                     <div class="row">
                         <!-- <div class="col-md-6">
                             <button type="button" id="" class="btn btn-danger" style="width: 100%;">Hapus Data Barang</button>
@@ -43,6 +44,8 @@
                             </form>
                         </div>
                     </div>
+                    @else
+                    @endif
                 </div>
             </div>
         </div>

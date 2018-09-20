@@ -9,8 +9,9 @@
             <div class="card">
                 <div class="card-header">Data Barang</div>
                 <div class="card-body">
+                @if(Auth::user()->role == 2)
                 <div class="card-title">
-                    <button type="button" id="buttonModalTambahBarang" class="btn btn-primary col-md-6" data-toggle="modal" data-target="#tambahModalBarang" style="width: 100%;">Tambah Data Barang</button>
+                    <button type="button" id="buttonModalTambahBarang" class="btn btn-primary col-md-12" data-toggle="modal" data-target="#tambahModalBarang" style="width: 100%;">Tambah Data Barang</button>
                     <div class="modal fade" id="tambahModalBarang" tabindex="-1" role="dialog" aria-labelledby="createModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -21,7 +22,6 @@
                                 <form method="POST" action="{{ route('admin.store.barang') }}">
                                     <div class="modal-body">
                                         {{ csrf_field() }}
-                                        <input type="hidden" name="stock_out" value="0">
                                         <div class="form-group row">
                                             <label for="nama_barang" class="col-md-4 col-form-label text-md-right">{{ __('Nama Barang') }}</label>
                                             <div class="col-md-8">
@@ -39,8 +39,8 @@
                                                 <label for="kat_id" class="col-md-4 col-form-label text-md-right">{{ __('Kategori') }}</label>
                                                 <div class="col-md-8">
                                                     <select class="custom-select col-md-8" id="kat_id" name="kat_id">
-                                                        @foreach($barang as $key)
-                                                        <option value="{{$key->kategori->id}}">{{$key->kategori->nama_kategori}}</option>
+                                                        @foreach($kategori as $key)
+                                                        <option value="{{$key->id}}">{{$key->nama_kategori}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -78,8 +78,9 @@
                             </div>
                         </div>
                     </div>
-                    <a role="button" class="btn btn-success col-md-5" href="#">Export Data Barang</a>
                 </div>
+                @else
+                @endif
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>

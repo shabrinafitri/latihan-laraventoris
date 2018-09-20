@@ -72,7 +72,6 @@
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
                     @endauth
                 </div>
             @endif
@@ -80,11 +79,6 @@
             <div class="content">
                 <div class="title m-b-md">
                     Laraventoris
-                </div>
-
-                <div class="links">
-                    <a href="{{ route('admin.index.barang') }}">Data Barang</a>
-                    <a href="{{ route('admin.index.peminjaman-barang') }}">Log Pinjaman</a>
                 </div>
             </div>
         </div>

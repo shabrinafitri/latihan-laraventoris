@@ -15,15 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
+
 Route::get('barang/index','BarangController@index')->name('admin.index.barang');
 Route::get('barang/show/{id}','BarangController@show')->name('admin.show.barang');
 Route::get('peminjaman/index','PeminjamanController@index')->name('admin.index.peminjaman-barang');
 Route::get('peminjaman/show/{id}','PeminjamanController@show')->name('admin.show.peminjaman-barang');
-
-Auth::routes();
-
+	
 Route::group(['middleware' => 'siswa'], function(){
-	Route::get('/home', 'HomeController@index')->name('home');	
+	Route::get('/home', 'HomeController@index')->name('home');
 });
 
 Route::group(['middleware' => 'admin'], function(){
@@ -36,6 +36,7 @@ Route::group(['middleware' => 'admin'], function(){
 			Route::post('/tambah','SiswaController@store')->name('admin.store.siswa');
 			Route::post('/edit/{id}', 'SiswaController@edit')->name('admin.edit.siswa');
 			Route::post('/update/{id}', 'SiswaController@update')->name('admin.update.siswa');
+			Route::get('/pdf/siswa', 'SiswaController@pdf')->name('admin.pdf.siswa');
 		});
 
 		Route::group(['prefix' => 'barang'], function(){
@@ -46,8 +47,6 @@ Route::group(['middleware' => 'admin'], function(){
 
 		Route::group(['prefix' => 'peminjaman'], function(){
 			Route::post('/tambah','PeminjamanController@store')->name('admin.store.peminjaman-barang');
-			Route::post('/edit/{id}', 'PeminjamanController@edit')->name('admin.edit.peminjaman-barang');
-			Route::post('/update/{id}', 'PeminjamanController@update')->name('admin.update.peminjaman-barang');
 			Route::get('/return/{id}','PeminjamanController@return')->name('admin.return.peminjaman-barang');
 		});
 
@@ -55,9 +54,22 @@ Route::group(['middleware' => 'admin'], function(){
 			Route::get('/index','ReparasiController@index')->name('admin.index.reparasi-barang');
 			Route::post('/tambah','ReparasiController@store')->name('admin.store.reparasi-barang');
 			Route::get('/show/{id}','ReparasiController@show')->name('admin.show.reparasi-barang');
-			Route::post('/edit/{id}', 'ReparasiController@edit')->name('admin.edit.reparasi-barang');
-			Route::post('/update/{id}', 'ReparasiController@update')->name('admin.update.reparasi-barang');
 			Route::get('/return/{id}','ReparasiController@return')->name('admin.return.reparasi-barang');
+		});
+
+		Route::group(['prefix' => 'mutasi'], function(){
+			Route::get('/index','MutasiController@index')->name('admin.index.mutasi-barang');
+			Route::post('/tambah','MutasiController@store')->name('admin.store.mutasi-barang');
+			Route::get('/show/{id}','MutasiController@show')->name('admin.show.mutasi-barang');
+		});
+
+		Route::group(['prefix' => 'laporan'], function(){
+			Route::get('/index','LaporanController@index')->name('admin.index.laporan');
+			Route::get('/pdf/laporan/siswa', 'LaporanController@siswaPdf')->name('admin.pdf.siswa-laporan');
+			Route::get('/pdf/laporan/barang', 'LaporanController@barangPdf')->name('admin.pdf.barang-laporan');
+			Route::get('/pdf/laporan/peminjaman', 'LaporanController@peminjamanPdf')->name('admin.pdf.peminjaman-laporan');
+			Route::get('/pdf/laporan/reparasi', 'LaporanController@reparasiPdf')->name('admin.pdf.reparasi-laporan');
+			Route::get('/pdf/laporan/mutasi', 'LaporanController@mutasiPdf')->name('admin.pdf.mutasi-laporan');
 		});
 	});
 });

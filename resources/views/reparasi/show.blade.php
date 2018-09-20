@@ -32,7 +32,7 @@
                             <p>{{ $reparasi->barang->nama_barang }}</p>
                             <p>{{ $reparasi->keterangan_reparasi }}</p>
                             <p>{{ $reparasi->jumlah_barang }}</p>
-                            <td>@if($reparasi->status == 1)<label style="color: red;">Perbaikan</label> @else <label style="color: green;">Telah Diperbaiki</label> @endif</td>
+                            <td>@if($reparasi->status == 'perbaikan')<label style="color: red;">Perbaikan</label> @else <label style="color: green;">Telah Diperbaiki</label> @endif</td>
                         </div>
                     </div>
                     <div class="row">

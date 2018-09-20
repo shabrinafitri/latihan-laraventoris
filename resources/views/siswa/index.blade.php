@@ -11,7 +11,7 @@
                 <div class="card-header">Data Siswa</div>
                 <div class="card-body">
                 <div class="card-title">
-                    <button type="button" id="buttonModalTambahSiswa" class="btn btn-primary col-md-6" data-toggle="modal" data-target="#tambahModalSiswa" style="width: 100%;">Tambah Data Siswa</button>
+                    <button type="button" id="buttonModalTambahSiswa" class="btn btn-primary col-md-12" data-toggle="modal" data-target="#tambahModalSiswa" style="width: 100%;">Tambah Data Siswa</button>
                     <div class="modal fade" id="tambahModalSiswa" tabindex="-1" role="dialog" aria-labelledby="createModalLabel">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -24,7 +24,7 @@
                                         {{ csrf_field() }}
                                         <input type="hidden" name="role" id="role" value="1">
                                         <div class="form-group row">
-                                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Full Name') }}</label>
+                                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama Lengkap') }}</label>
                                             <div class="col-md-8">
                                                 <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
 
@@ -81,13 +81,12 @@
                             </div>
                         </div>
                     </div>
-                    <a role="button" class="btn btn-success col-md-5" href="#">Export Data Siswa</a>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">NISN</th>
+                                <th scope="col">NIS</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">Jurusan</th>
                                 <th scope="col">Angkatan</th>

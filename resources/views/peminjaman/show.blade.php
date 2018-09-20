@@ -47,20 +47,17 @@
                             <p>{{ $peminjaman->barang->nama_barang }}</p>
                             <p>{{ $peminjaman->barang->keterangan_barang }}</p>
                             <p>{{ $peminjaman->jumlah_barang }} Barang</p>
-                            <td>@if($peminjaman->status == 1)<label style="color: red;">Belum Dikembalikan</label> @else <label style="color: green;">Telah Dikembalikan</label> @endif</td>
+                            <td>@if($peminjaman->status == 'dipinjam')<label style="color: red;">Belum Dikembalikan</label> @else <label style="color: green;">Telah Dikembalikan</label> @endif</td>
                         </div>
                     </div>
+                    @if(Auth::user()->role == 2)
                     <div class="row">
-                        <div class="col-md-6">
-                            <a onclick="event.preventDefault();document.getElementById('edit-form').submit();" role="button" class="btn btn-warning" style="width: 100%;" >Edit Data Barang</a>
-                            <form id="edit-form" action="#" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
-                        </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <a role="button" href="{{ route('admin.return.peminjaman-barang', $peminjaman->id ) }}" class="btn btn-danger" style="width: 100%;">Kembalikan Barang</a>
                         </div>
                     </div>
+                    @else
+                    @endif
                 </div>
             </div>
         </div>

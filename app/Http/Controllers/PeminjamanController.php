@@ -22,17 +22,6 @@ class PeminjamanController extends Controller
         return view('peminjaman.index')->with($data);
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -70,29 +59,6 @@ class PeminjamanController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -101,7 +67,7 @@ class PeminjamanController extends Controller
     public function return($id)
     {
         $peminjaman = Peminjaman::find($id);
-        $peminjaman->status = "2";
+        $peminjaman->status = "dikembalikan";
         $peminjaman->save();
 
         $barang = Barang::where('id','=', $peminjaman->barang_id)->first();

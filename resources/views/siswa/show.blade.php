@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-3">
-                            <p class="font-weight-bold">NISN</p>
+                            <p class="font-weight-bold">NIS</p>
                             <p class="font-weight-bold">Nama Lengkap</p>
                             <p class="font-weight-bold">Jurusan</p>
                             <p class="font-weight-bold">Angkatan</p>
@@ -31,7 +31,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <a onclick="event.preventDefault();document.getElementById('edit-form').submit();" role="button" class="btn btn-warning" style="width: 100%;" >Edit Data Barang</a>
+                            <a onclick="event.preventDefault();document.getElementById('edit-form').submit();" role="button" class="btn btn-warning" style="width: 100%;" >Edit Data Siswa</a>
                             <form id="edit-form" action="{{ route('admin.edit.siswa', $users->id) }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                             </form>

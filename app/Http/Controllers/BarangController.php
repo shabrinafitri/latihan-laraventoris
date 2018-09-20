@@ -15,18 +15,9 @@ class BarangController extends Controller
      */
     public function index()
     {
-        $data['barang'] = Barang::with('kategori')->paginate(10);
+        $data['barang'] = Barang::paginate(10);
+        $data['kategori'] = Kategori::all();
         return view('barang.index')->with($data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -41,8 +32,7 @@ class BarangController extends Controller
         $barang->kode_barang = rand();
         $barang->nama_barang = $request->input('nama_barang');
         $barang->keterangan_barang = $request->input('keterangan_barang');
-        $barang->stock_in = $request->input('final_stock');
-        $barang->final_stock = $request->input('final_stock');
+        $barang->stok = $request->input('stok');
         $barang->kat_id = $request->input('kat_id');
         $barang->save();
 
@@ -91,16 +81,5 @@ class BarangController extends Controller
         $barang->save();
 
         return redirect()->route('admin.show.barang', [$id]);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

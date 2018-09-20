@@ -21,7 +21,7 @@ class CreatePeminjamansTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
             $table->integer('barang_id');
             $table->foreign('barang_id')->references('id')->on('barang')->onDelete('CASCADE');
-            $table->char('status');
+            $table->enum('status', ['dikembalikan', 'dipinjam']);
             $table->timestamps();
         });
     }
